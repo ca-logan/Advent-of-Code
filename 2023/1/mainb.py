@@ -17,9 +17,9 @@ def print_hi(name):
     current = ""  # Current string being stored and searched
     input_file = open('input.txt', 'r', encoding="utf-8")  # Reading the input.txt file
     calib_total = 0  # The calibration values' total representation (put together as an int, i.e. [a,b] => ab)
-    total = 0
+    total = 0   #the overall total of values, used in problems 1a and 1b.
     for line in input_file:  # For each line, read each character
-        values = []
+        values = []     # Initialize values
         chars = list(line)
         calib = [0, 0]
         current_value = 0
@@ -38,6 +38,22 @@ def print_hi(name):
         total += calib_total
         print(f"The final calibration value of line " + line + " is: " + str(calib_total))
         print(f"The sum total of all calibration values so far is: " + str(total))
+
+def find_digits(line):
+    english_map = {
+        "one": "1",
+        "two": "2",
+        "three": "3",
+        "four": "4",
+        "five": "5",
+        "six": "6",
+        "seven": "7",
+        "eight": "8",
+        "nine": "9"
+    }
+
+    re.compile(r'')
+    
 
 
 # def check_string(check):
