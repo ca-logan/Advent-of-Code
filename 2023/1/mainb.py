@@ -11,36 +11,16 @@ and implicit integer cases as I go. Then, pick first and last values and use as 
 import re
 
 
-def print_hi(name):
+def print_hi():
+    print(f"test1")
     values = list  # list of possible calibration values. values[0] will always be set as calib[0]
-    calib = list  # Calibration values to store
+    calib = list  # Calibration values [1, n-1] to store from a list of n values
     current = ""  # Current string being stored and searched
     input_file = open('input.txt', 'r', encoding="utf-8")  # Reading the input.txt file
     calib_total = 0  # The calibration values' total representation (put together as an int, i.e. [a,b] => ab)
-    total = 0   #the overall total of values, used in problems 1a and 1b.
-    for line in input_file:  # For each line, read each character
-        values = []     # Initialize values
-        chars = list(line)
-        calib = [0, 0]
-        current_value = 0
-        calib_total = 0
-        for char in chars:  # For each character, check if it's an integer value
-            try:
-                current_value = int(char)
-                print(f"The character being checked was an integer: " + char)
-                values.append(int(char))
-            except ValueError:
-                print(f"ValueError: The character being checked wasn't an integer value: " + char)
-                current += char
-                print(f"The current string being searched over is: " + current)
-        print(f"The calibration values are: " + str(calib))
-        calib_total = int(str(calib[0]) + str(calib[1]))
-        total += calib_total
-        print(f"The final calibration value of line " + line + " is: " + str(calib_total))
-        print(f"The sum total of all calibration values so far is: " + str(total))
+    total = 0  # the overall total of values, used in problems 1a and 1b.
 
-def find_digits(line):
-    english_map = {
+    number_map = {  # A dictionary mapping each english number name to its digit representation
         "one": "1",
         "two": "2",
         "three": "3",
@@ -52,11 +32,21 @@ def find_digits(line):
         "nine": "9"
     }
 
-    re.compile(r'')
-    
+    for line in input_file:  # For each line:
+        print(f"The current line being read is:   " + line)
+        values = re.compile(r'(?:\b(?:' + '|'.join(map(re.escape(), number_map(line))) + r')\b|\d)')  # Regex stuff
+        calib[0] = values[0]
+        calib[1] = values[-1]
 
+        print(f"The calibration values are: " + str(calib))
+        calib_total = int(str(calib[0]) + str(calib[1]))
+        total += calib_total
+        print(f"The final calibration value of line " + line + " is: " + str(calib_total))
+        print(f"The sum total of all calibration values so far is: " + str(total))
 
-# def check_string(check):
+    print(f"Test")
+
 
 if __name__ == '__mainb__':
-    print_hi('PyCharm')
+    print(f"test3")
+    print_hi()
